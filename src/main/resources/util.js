@@ -60,12 +60,13 @@
      * @param {Guacamole.OutputStream} stream
      *     The output stream receiving the text.
      *
-     * @param {String} value
-     *     The text to send.
+     * @param {*} value
+     *     The text to send. If the provided value is not already a string, it
+     *     will be coerced to a string.
      */
     var sendText = function sendText(stream, value) {
         var writer = new Guacamole.StringWriter(stream);
-        writer.sendText(value);
+        writer.sendText('' + value);
         writer.sendEnd();
     };
 
