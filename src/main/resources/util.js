@@ -307,7 +307,7 @@
         'F24' : 0xFFD5,
 
         /**
-         * The X11 keysym of the insert key.
+         * The X11 keysym of the Insert key.
          *
          * @type {Number}
          */
