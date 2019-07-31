@@ -530,7 +530,7 @@
         /**
          * Sends the given connection parameter value to the current,
          * active remote desktop connection using an argument value stream with
-         * he given name. The argument value stream is opened with the
+         * the given name. The argument value stream is opened with the
          * "text/plain" mimetype.
          *
          * @param {String} name
