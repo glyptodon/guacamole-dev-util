@@ -1,0 +1,8 @@
+{
+    "guacamoleVersion" : "*",
+    "name" : "Guacamole Development Utility",
+    "namespace" : "dev-util",
+
+    "js" : [ "util.js" ]
+
+}
