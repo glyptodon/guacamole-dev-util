@@ -588,4 +588,42 @@
 
     }; // end window.G utility object
 
+    /**
+     * Reference to the original, unpatched Guacamole.Client.
+     *
+     * @type Guacamole.Client
+     */
+    var oldClient = Guacamole.Client;
+
+    // Patch Guacamole.Client such that its onpipe handler will accept and log
+    // ALL pipes
+    Guacamole.Client = function patchedClient(tunnel) {
+
+        // Invoke constructor of superclass
+        oldClient.call(this, tunnel);
+
+        // Log all received pipes, data, etc.
+        this.onpipe = function pipeReceived(stream, mimetype, name) {
+
+            // Log start of stream
+            var reader = new Guacamole.StringReader(stream);
+            console.log('pipe: %s: stream begins (%s)', name, mimetype);
+
+            // Log each received blob of text
+            reader.ontext = function textReceived(text) {
+                console.log('pipe: %s: \"%s\"', name, text);
+            };
+
+            // Log end of stream
+            reader.onend = function streamEnded() {
+                console.log('pipe: %s: stream ends', name);
+            };
+
+        };
+
+    };
+
+    // Inherit from original Guacamole.Client
+    Guacamole.Client.prototype = oldClient.prototype;
+
 })();
